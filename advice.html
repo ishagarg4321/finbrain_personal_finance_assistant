@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Advice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Advice</h1>
+        <div id="advice" class="advice-box"></div>
+        <button onclick="window.location.href='index.html'">Back to Form</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const params = new URLSearchParams(window.location.search);
+            const salary = params.get('salary');
+            const expense = params.get('expense');
+            const saving = params.get('saving');
+
+            try {
+                const response = await fetch('http://localhost:3000/getAdvice', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ salary, expense, saving })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                document.getElementById('advice').innerText = data.advice;
+            } catch (error) {
+                document.getElementById('advice').innerText = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

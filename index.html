@@ -1,0 +1,224 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Data Entry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Enter Your Financial Data</h1>
+    <form id="financialForm" action="/submit" method="POST">
+        <label for="income">Income:</label>
+        <input type="number" id="income" name="income" required>
+        <div id="expenseFields">
+            <div class="expenseField">
+                <label for="description1">Expense 1 Description:</label>
+                <input type="text" id="description1" name="description1" required>
+                <label for="amount1">Expense 1 Amount:</label>
+                <input type="number" id="amount1" name="amount1" class="expenseAmount" required>
+            </div>
+        </div>
+        <button type="button" id="addExpense">Add Expense</button>
+        <label for="totalExpense">Total Expense:</label>
+        <input type="text" id="totalExpense" name="totalExpense" readonly>
+        <button type="submit">Submit</button>
+    </form>
+    <script src="scripts.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Advisor</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Styling the background */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgb(6, 82, 57);
+    /* background-image: url('image1.jpg'); Path to your background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+}
+/* Centering the content */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+/* Style the header */
+header {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px; /* Add some padding */
+    display: inline-block;
+}
+
+h1 {
+    font-size: 36px; /* Larger font size for the heading */
+    /* color: #333; Dark gray text color */
+    text-transform: uppercase; /* Uppercase the text */
+    font-weight: bold; /* Bold text */
+    opacity: 0; /* Initially hide the text */
+    animation: fadeIn 2s ease-in-out forwards, changeColor 4s infinite alternate; /* Animations */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes changeColor {
+    0% { color: red; }
+    25% { color: blue; }
+    50% { color: green; }
+    75% { color: orange; }
+    100% { color: purple; }
+}
+/* Form container */
+.form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #8e7171;
+        }
+
+        /* Form inputs */
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: 50%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: 10px;
+        }
+
+        /* Expense fields */
+        .expenseField {
+            margin-bottom: 10px;
+        }
+
+        .expenseField label {
+            display: inline-block;
+            width: 45%;
+            margin-right: 5%;
+            text-align: left;
+        }
+
+        .expenseField input {
+            width: 50%;
+            margin-right: 0;
+        }
+
+        /* Button */
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Total expense and saving */
+        #totalExpense,
+        #saving,
+        #month {
+            width: calc(50% - 5px);
+            margin-right: 10px;
+        }
+
+        #totalExpense,
+        #saving,
+        #month,
+        #getAdvice {
+            margin-top: 10px;
+        }
+
+        #totalExpense,
+        #saving,
+        #month,
+        #getAdvice,
+        #addExpense {
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navabar"><header>
+        <h1 id="welcome-text">Finance Details of the customer!</h1>
+    </header></div>
+
+    </div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+    <br>
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" required>
+        <br>
+    <form id="financialForm">
+        <div id="expenseFields">
+            <div class="expenseField">
+                <label for="description1">Expense 1 Description:</label>
+                <input type="text" id="description1" name="description1" required>
+                <label for="amount1">Expense 1 Amount:</label>
+                <input type="number" id="amount1" name="amount1" class="expenseAmount" required>
+            </div>
+        </div>
+        <button type="button" id="addExpense">Add Expense</button>
+        <br>
+        <label for="totalExpense">Total Expense:</label>
+        <input type="number" id="totalExpense" readonly>
+        <br>
+        <label for="saving">Saving:</label>
+        <input type="number" id="saving" required>
+        <br>
+        <label for="month">advice for how much time needed :</label>
+    <input type="number" id="month" required>
+    <br>
+        <button type="button" id="getAdvice">Get Advice</button>
+    </form>
+    
+    <div id="advice"></div>
+    <!-- <h1>Financial Overview Graph</h1>
+    <img src="financial_overvier_graph.png"> -->
+    <script src="scripts.js">
+
+    </script>
+</body>
+</html>
